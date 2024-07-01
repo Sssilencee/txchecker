@@ -1,0 +1,9 @@
+[package]
+name = "hyperlib"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+http-body-util = { workspace = true }
+hyper = { workspace = true }
+hyper-util = { workspace = true }

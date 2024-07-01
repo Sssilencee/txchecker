@@ -1,0 +1,30 @@
+[package]
+name = "solana"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+amqprs = "1.6.1"
+anyhow = "1.0.82"
+clap = { version = "4.5.7", features = ["derive"] }
+config = { path = "../../crates/lib/config" }
+dotenv = "0.15.0"
+env_logger = "0.11.3"
+log = "0.4.21"
+rabbitmqlib = { path = "../../crates/lib/rabbitmq" }
+solana-rpc-client = "1.18.16"
+solana-sdk = "1.18.16"
+sonic-rs = "0.3.5"
+tokio = { version = "1.37.0", features = ["macros", "rt-multi-thread", "sync"] }
+queue = { path = "../../crates/transport/queue" }
+leveldb = "0.8.6"
+leveldblib = { path = "../../crates/lib/leveldb" }
+storage = { path = "../../crates/storage" }
+
+[[test]]
+name = "process_valid_msg"
+harness = false
+
+[[test]]
+name = "process_valid_msg_backup"
+harness = false

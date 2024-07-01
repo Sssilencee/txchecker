@@ -1,0 +1,74 @@
+[package]
+name = "tx-checker"
+version = "0.1.0"
+edition = "2021"
+
+[workspace]
+exclude = ["e2e/solana"]
+
+[workspace.dependencies]
+app = { path = "crates/app" }
+amqprs = "1.6.1"
+anyhow = "1.0.82"
+bs58 = "0.5.1"
+config = { path = "crates/lib/config" }
+const_format = "0.2.32"
+clap = { version = "4.5.7", features = ["derive"] }
+db-key = "0.0.5"
+dotenv = "0.15.0"
+env_logger = "0.11.3"
+env-loggerlib = { path = "crates/lib/env-logger" }
+envy = "0.4.2"
+fastwebsockets = { version = "0.7.0", features = ["upgrade"] }
+fastwebsocketslib = { path = "crates/lib/fastwebsockets" }
+futures = "0.3.30"
+hashbrown = "0.14.5"
+http-body-util = "0.1.0"
+hyper = { version = "1.2.0" }
+hyper-util = { version = "0.1.2", features = ["tokio", "client-legacy", "http2"] }
+hyperlib = { path = "crates/lib/hyper" }
+log = "0.4.21"
+itertools = "0.12.1"
+queue = { path = "crates/transport/queue" }
+rabbitmqlib = { path = "crates/lib/rabbitmq" }
+rustls = "0.23.8"
+serde = { version = "1.0.199", features = ["derive"] }
+solana = { path = "crates/solana" }
+sonic-rs = "0.3.5"
+storage = { path = "crates/storage" }
+tokio = { version = "1.37.0", features = ["macros", "rt-multi-thread", "sync", "signal"] }
+tokio-util = "0.7.11"
+tokio-rustls = "0.26.0"
+toml = "0.8.14"
+trait-variant = "0.1.2"
+lazy-channel = { path = "crates/lib/lazy-channel" }
+leveldb = "0.8.6"
+leveldblib = { path = "crates/lib/leveldb" }
+url = "2.5.0"
+webpki-roots = "0.26.1"
+
+[dependencies]
+app = { workspace = true }
+anyhow = { workspace = true }
+config = { workspace = true }
+dotenv = { workspace = true }
+env_logger = { workspace = true }
+env-loggerlib = { workspace = true }
+fastwebsocketslib = { workspace = true }
+hyperlib = { workspace = true }
+log = { workspace = true }
+queue = { workspace = true }
+rabbitmqlib = { workspace = true }
+solana = { workspace = true, optional = true }
+tokio = { workspace = true }
+tokio-util = { workspace = true }
+storage = { workspace = true }
+leveldb = { workspace = true }
+leveldblib = { workspace = true }
+
+[features]
+solana = ["dep:solana"]
+
+[dev-dependencies]
+amqprs = { workspace = true }
+sonic-rs = { workspace = true }

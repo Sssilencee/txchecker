@@ -1,0 +1,22 @@
+[package]
+name = "solana"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = { workspace = true }
+app = { workspace = true }
+bs58 = { workspace = true }
+const_format = { workspace = true }
+http-body-util = { workspace = true }
+hyper = { workspace = true }
+hyper-util = { workspace = true }
+log = { workspace = true }
+serde = { workspace = true }
+sonic-rs = { workspace = true }
+tokio = { workspace = true }
+tokio-util = { workspace = true }
+trait-variant = { workspace = true }
+fastwebsockets = { workspace = true }
+itertools = { workspace = true }
+lazy-channel = { workspace = true }

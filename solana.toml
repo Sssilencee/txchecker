@@ -1,0 +1,11 @@
+[queues]
+input_queue_name = "solana.sol.transfer"
+output_queue_name = "result"
+
+[rpc]
+http_endpoint_url = "https://go.getblock.io:443/da5322a3689b4de5a57d17d8cd8d4596"
+ws_endpoint_url = "https://go.getblock.io:443/da5322a3689b4de5a57d17d8cd8d4596"
+
+[db]
+payments_path = "/var/lib/tx-checker/db/solana/payments"
+height_path = "/var/lib/tx-checker/db/solana/height"

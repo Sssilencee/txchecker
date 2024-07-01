@@ -1,0 +1,13 @@
+[package]
+name = "app"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = { workspace = true }
+const_format = { workspace = true }
+db-key = { workspace = true }
+log = { workspace = true }
+tokio = { workspace = true }
+tokio-util = { workspace = true }
+queue = { workspace = true }

@@ -1,0 +1,16 @@
+[package]
+name = "queue"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+amqprs = { workspace = true }
+anyhow = { workspace = true }
+const_format = { workspace = true }
+serde = { workspace = true }
+sonic-rs = { workspace = true }
+log = { workspace = true }
+tokio = { workspace = true }
+tokio-util = { workspace = true }
+futures = { workspace = true }
+url = { workspace = true }

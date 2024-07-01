@@ -1,0 +1,18 @@
+[package]
+name = "storage"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = { workspace = true }
+app = { workspace = true }
+const_format = { workspace = true }
+db-key = { workspace = true }
+hashbrown = { workspace = true }
+log = { workspace = true }
+serde = { workspace = true }
+sonic-rs = { workspace = true }
+tokio = { workspace = true }
+tokio-util = { workspace = true }
+leveldb = { workspace = true }
+leveldblib = { workspace = true }

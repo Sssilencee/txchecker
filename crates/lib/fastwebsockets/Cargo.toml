@@ -1,0 +1,16 @@
+[package]
+name = "fastwebsocketslib"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = { workspace = true }
+rustls = { workspace = true }
+fastwebsockets = { workspace = true }
+http-body-util = { workspace = true }
+hyper = { workspace = true }
+hyper-util = { workspace = true }
+tokio = { workspace = true }
+tokio-rustls = { workspace = true }
+url = { workspace = true }
+webpki-roots = { workspace = true }
