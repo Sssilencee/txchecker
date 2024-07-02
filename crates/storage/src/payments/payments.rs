@@ -1,12 +1,10 @@
-use std::time::Duration;
-
 use anyhow::{bail, Context};
 use app::domain::{payment::{IncomingPayment, ProcessedPayment, ProcessedPaymentMeta}, transfer::IncomingTransferParsed};
 use const_format::concatcp;
 use hashbrown::hash_map::EntryRef;
 use leveldb::{database::Database, iterator::Iterable, kv::KV, options::{ReadOptions, WriteOptions}};
 use log::error;
-use tokio::{select, sync::mpsc::{UnboundedReceiver, UnboundedSender}, time::sleep};
+use tokio::{select, sync::mpsc::{UnboundedReceiver, UnboundedSender}, task};
 use tokio_util::sync::CancellationToken;
 
 use super::models::{Payment, PaymentsCache, PubkeyKey};
@@ -46,7 +44,7 @@ impl PaymentsActor {
 
                 _ = token.cancelled() => return Ok(()),
 
-                _ = sleep(Duration::from_millis(0)) => continue,
+                _ = task::yield_now() => continue,
             }
         }
     }

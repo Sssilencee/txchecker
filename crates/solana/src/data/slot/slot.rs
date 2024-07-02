@@ -1,12 +1,10 @@
-use std::time::Duration;
-
 use anyhow::Context;
 use const_format::concatcp;
 use fastwebsockets::{FragmentCollector, Frame, Payload};
 use hyper::upgrade::Upgraded;
 use hyper_util::rt::TokioIo;
 use log::error;
-use tokio::{select, sync::mpsc::{channel, Receiver, Sender, UnboundedSender}, time::sleep};
+use tokio::{select, sync::mpsc::{channel, Receiver, Sender, UnboundedSender}, task};
 use tokio_util::sync::CancellationToken;
 
 use crate::{data::{req::RpcReq, res::{RpcNotification, RpcRes}}, domain::slot::{Slot, SlotTx}};
@@ -36,7 +34,7 @@ impl SlotActor {
 
                 _ = token.cancelled() => return,
 
-                _ = sleep(Duration::from_millis(0)) => continue,
+                _ = task::yield_now() => continue,
             }
         }
     }

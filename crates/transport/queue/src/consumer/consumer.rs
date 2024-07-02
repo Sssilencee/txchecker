@@ -1,11 +1,11 @@
-use std::{fmt::Debug, time::Duration};
+use std::fmt::Debug;
 
 use amqprs::{channel::{BasicConsumeArguments, Channel, ConsumerMessage}, connection::Connection};
 use anyhow::{bail, Context};
 use const_format::concatcp;
 use log::{error, info};
 use serde::de::DeserializeOwned;
-use tokio::{select, sync::mpsc::{unbounded_channel, UnboundedReceiver, UnboundedSender}, time::sleep};
+use tokio::{select, sync::mpsc::{unbounded_channel, UnboundedReceiver, UnboundedSender}, task};
 use tokio_util::sync::CancellationToken;
 
 use super::messages::ConsumerMsg;
@@ -49,7 +49,7 @@ where
 
                 _ = token.cancelled() => return self.stop(channel).await,
 
-                _ = sleep(Duration::from_millis(0)) => continue,
+                _ = task::yield_now() => continue,
             }
         }
     }

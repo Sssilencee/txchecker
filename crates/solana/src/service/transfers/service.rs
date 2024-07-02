@@ -3,7 +3,7 @@ use app::domain::{height::Height, state::State, transfer::IncomingTransferParsed
 use const_format::concatcp;
 use lazy_channel::mpsc::receiver::LazyUnboundedReceiver;
 use log::{debug, error};
-use tokio::{select, sync::mpsc::{unbounded_channel, Sender, UnboundedReceiver, UnboundedSender}};
+use tokio::{select, sync::mpsc::{unbounded_channel, Sender, UnboundedReceiver, UnboundedSender}, task};
 use tokio_util::sync::CancellationToken;
 
 use crate::{data::block::BlockRepo, domain::slot::{Slot, SlotTx, SLOT_CONFIRMATION_LAG}};
@@ -44,6 +44,8 @@ impl<B: BlockRepo> TransfersServiceActor<B> {
                 },
 
                 _ = token.cancelled() => return,
+
+                _ = task::yield_now() => continue,
             }
         }
     }

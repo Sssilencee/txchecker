@@ -1,10 +1,8 @@
-use std::time::Duration;
-
 use anyhow::Context;
 use const_format::concatcp;
 use log::error;
 use queue::{consumer::messages::{ConsumerMsg, TransferMsg}, producer::messages::{ProducerMsg, ResultMsg}};
-use tokio::{select, sync::mpsc::{UnboundedReceiver, UnboundedSender}, time::sleep};
+use tokio::{select, sync::mpsc::{UnboundedReceiver, UnboundedSender}, task};
 use tokio_util::sync::CancellationToken;
 
 use crate::{application::mappers::IntoIncomingPayment, domain::{payment::{IncomingPayment, ProcessedPaymentMeta}, pubkey::Pubkey, state::State}};
@@ -49,7 +47,7 @@ impl<P: ParserPort> TransferActor<P> {
 
                 _ = token.cancelled() => return,
 
-                _ = sleep(Duration::from_millis(0)) => continue,
+                _ = task::yield_now() => continue,
             }
         }
     }

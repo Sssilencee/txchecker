@@ -1,11 +1,9 @@
-use std::time::Duration;
-
 use anyhow::{bail, Context};
 use app::domain::height::Height;
 use const_format::concatcp;
 use leveldb::{database::Database, kv::KV, options::{ReadOptions, WriteOptions}};
 use leveldblib::slice_to_arr;
-use tokio::{select, sync::mpsc::{unbounded_channel, UnboundedReceiver, UnboundedSender}, time::sleep};
+use tokio::{select, sync::mpsc::{unbounded_channel, UnboundedReceiver, UnboundedSender}, task};
 use tokio_util::sync::CancellationToken;
 
 use super::models::HeightKey;
@@ -28,7 +26,7 @@ impl HeightActor {
 
                 _ = token.cancelled() => return Ok(()),
 
-                _ = sleep(Duration::from_millis(0)) => continue,
+                _ = task::yield_now() => continue,
             }
         }
     }
