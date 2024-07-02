@@ -15,9 +15,9 @@ impl IntoIncomingPayment for ConsumerMsg<TransferMsg> {
 
 impl Into<ProducerMsg<ResultMsg>> for ProcessedPayment {
     fn into(mut self) -> ProducerMsg<ResultMsg> {
-        let signatures = self.signatures();
+        let signatures = self.take_signatures();
         let tag = self.tag();
-        let error = self.error();
+        let error = self.take_error();
 
         let msg = ResultMsg::new(self.id(), signatures, error);
         ProducerMsg::new(msg, tag)

@@ -73,16 +73,12 @@ impl ProcessedPayment {
     }
 
     #[inline]
-    pub fn signatures(&mut self) -> Option<Vec<String>> {
-        self.signatures
-            .as_mut()
-            .map(|sigs| mem::take(sigs))
+    pub fn take_signatures(&mut self) -> Option<Vec<String>> {
+        mem::take(&mut self.signatures)
     }
 
     #[inline]
-    pub fn error(&mut self) -> Option<()> {
-        self.error
-            .as_mut()
-            .map(|e| mem::take(e))
+    pub fn take_error(&mut self) -> Option<()> {
+        mem::take(&mut self.error)
     }
 }
