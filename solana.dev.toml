@@ -7,5 +7,5 @@ http_endpoint_url = "http://localhost:8899"
 ws_endpoint_url = "http://localhost:8900"
 
 [db]
-payments_path = "/var/lib/tx-checker/db/solana/payments"
-height_path = "/var/lib/tx-checker/db/solana/height"
+payments_path = "/var/lib/txchecker/db/solana/payments"
+height_path = "/var/lib/txchecker/db/solana/height"

@@ -7,9 +7,9 @@ pub struct Args {
     #[arg(short, long)]
     pub rabbitmq: String,
 
-    /// Path to a `tx-checker` binary
+    /// Path to a `txchecker` binary
     #[arg(short, long)]
-    pub tx_checker: String,
+    pub txchecker: String,
 
     /// Path to a `solana-test-validator` binary
     #[arg(short, long)]

@@ -15,7 +15,7 @@ use tokio::time::sleep;
 /// ```bash
 /// RUST_LOG=info cargo test --test process_valid_msg_backup -- \
 ///     --rabbitmq /opt/homebrew/opt/rabbitmq/sbin/rabbitmq-server \
-///     --tx-checker ../../target/debug/tx-checker \
+///     --txchecker ../../target/debug/txchecker \
 ///     --solana-test-validator ~/.local/share/solana/install/active_release/bin/solana-test-validator
 /// ```
 #[tokio::main]
@@ -121,7 +121,7 @@ async fn main() -> anyhow::Result<()> {
         sleep(Duration::from_secs(1)).await;
     }
 
-    let handle = Command::new(args.tx_checker)
+    let handle = Command::new(args.txchecker)
         .arg("--dev")
         .arg("--env")
         .arg(env_path)
